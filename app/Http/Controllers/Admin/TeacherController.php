@@ -43,7 +43,6 @@ class TeacherController extends Controller
         $teacher = $teachers->find($id);
         return response()->json($teacher,200);
     }
-
     /**
      * Update the specified resource in storage.
      *

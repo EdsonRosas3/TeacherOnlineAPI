@@ -17,6 +17,7 @@ class CreateSubjectsTable extends Migration
             $table->increments('id');
             $table->string('name_suject');
             $table->float('price');
+            $table->string('area')->nullable();
             $table->string('content');
             $table->string('description');
             $table->integer('teacher_id');

@@ -21,6 +21,8 @@ Route::group(['middleware' => 'auth:api'], function(){
 
     //detail del user conectado
     Route::post('details', 'Admin\UserController@details');
+    
+   
     //users
     Route::put('users/{id}','Admin\UserController@update');
     Route::delete('users/{id}','Admin\UserController@destroy');
@@ -33,12 +35,12 @@ Route::group(['middleware' => 'auth:api'], function(){
     //subjects
    
     Route::post('subjects','Admin\SubjectController@store');
-   
     Route::put('subjects/{id}','Admin\SubjectController@update');
     Route::delete('subjects/{id}','Admin\SubjectController@destroy');
 
 
 });
+
 
 Route::get('subjects','Admin\SubjectController@index');
 Route::get('subjects/{id}','Admin\SubjectController@show');
@@ -49,9 +51,6 @@ Route::post('users','Admin\UserController@store');
 
 Route::get('teachers','Admin\TeacherController@index');
 Route::get('teachers/{id}','Admin\TeacherController@show');
-
-
-
 
 Route::get('students','Admin\StudentController@index');
 Route::get('students/{id}','Admin\StudentController@totalStudents');

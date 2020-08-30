@@ -8,7 +8,7 @@ use App\Subject;
 use App\Qualification;
 class Teacher extends Model
 {
-    protected $fillable = ['university','description','user_id','college_career','url_telegram','whatsapp'];
+    protected $fillable = [ 'description','university','user_id','college_career','url_telegram','whatsapp'];
 
     public function user(){
         return $this->belongsTo(User::class);
