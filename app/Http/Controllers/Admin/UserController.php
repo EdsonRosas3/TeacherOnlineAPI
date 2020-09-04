@@ -37,10 +37,10 @@ class UserController extends Controller
     public function register(Request $request) 
     { 
         $validator = Validator::make($request->all(), [ 
-            'first_name' => 'required', 
+            'first_name' => 'required',
+            'last_name' => 'required', 
             'email' => 'required|email', 
             'password' => 'required', 
-            'c_password' => 'required|same:password', 
         ]);
         if ($validator->fails()) { 
             return response()->json(['error'=>$validator->errors()], 401);            
@@ -97,9 +97,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
+        $user = User::with('teacher')->get();
+        $user = $user->find($id);
         return response()->json($user,200);
     }
+    
 
     /**
      * Update the specified resource in storage.
@@ -113,6 +115,7 @@ class UserController extends Controller
         $user = User::find($id);
         $user->update($request->all());
         return response()->json($user,200);
+
     }
 
     /**

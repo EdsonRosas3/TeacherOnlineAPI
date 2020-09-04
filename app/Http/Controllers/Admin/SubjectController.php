@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Subject;
+use DB;
 
 class SubjectController extends Controller
 {
@@ -41,6 +42,24 @@ class SubjectController extends Controller
     {
         $subject= Subject::find($id);
         return response()->json($subject,200);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showSubjects($id)
+    {
+       
+        $subjects = DB::table('subjects')
+        ->select(DB::raw('*'))
+        ->where('teacher_id', '=', $id)
+        ->get();
+        
+       
+        return response()->json($subjects,200);
     }
 
     /**

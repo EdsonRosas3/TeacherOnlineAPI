@@ -15,14 +15,14 @@ class User extends Authenticatable
 
     /**
      * The attributes that are mass assignable.
-     *
+     *users
      * @var array
      */
     protected $fillable = [
         'first_name','last_name','avatar', 'email','email_verified_at', 'password','status'];
     public function teacher()
     {
-        return $this->belongsTo(Teacher::class);
+        return $this->hasMany(Teacher::class);
     }
     public function student()
     {
