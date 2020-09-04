@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Teacher;
+use DB;
 
 class TeacherController extends Controller
 {
@@ -42,6 +43,26 @@ class TeacherController extends Controller
         $teachers = Teacher::with('subjects','user')->get();
         $teacher = $teachers->find($id);
         return response()->json($teacher,200);
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showTeacher($user_id)
+    {
+        
+        $teacherAux = DB::table('teachers')
+        ->select(DB::raw('*'))
+        ->where('user_id', '=', $user_id)
+        ->get();
+        $id = $teacherAux[0]->id;
+
+        $teachers = Teacher::with('subjects','user')->get();
+        $teacher = $teachers->find($id);
+        return response()->json($teacher,200);
+
     }
     /**
      * Update the specified resource in storage.
